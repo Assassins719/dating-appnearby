@@ -1,0 +1,52 @@
+page-upload-pic {
+  .card-header {
+    padding: 0;
+  }
+
+  .gallery {
+    margin-right: 20px;
+  }
+
+  .thumb-image-container {
+    padding: 3px 10px;
+    background: #fff;
+  }
+
+  .icon-container {
+    text-align: right;
+    font-size: 18px;
+    margin-right: 5px;
+    color: #848688;
+
+    ion-icon {
+      vertical-align: middle;
+    }
+  }
+
+  .selected{
+    border: 1px solid #ff0054;
+  }
+
+  .set-profile{
+    border:2px solid #d1d2d3;
+    border-radius: 5px;
+    text-align: center;
+    margin-top: 2px;
+  }
+
+  .not-approved{
+    border: 2px solid #d1d2d3;
+    border-radius: 1px;
+    text-align: center;
+    margin-top: 2px;
+    position: absolute;
+    color: #ff0054;
+    padding: 5px;
+    top: -2px;
+    background: #fff;
+  }
+
+  .image-container{
+    position: relative;
+  }
+}

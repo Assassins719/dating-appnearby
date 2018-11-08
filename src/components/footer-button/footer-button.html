@@ -1,0 +1,20 @@
+<ion-toolbar class="footer-common-button">
+  <div class="button-container" (tap)="navigateToMessage()">
+    <button ion-button icon-only clear class="footer-icon chat" [ngClass]="{'activated':currentFooterItem=='Messages'}">
+    </button>
+    <div class="badge-button" *ngIf="chatCount">{{chatCount}}</div>
+  </div>
+  <div class="button-container" (tap)="navigateToSearch()">
+    <button ion-button icon-only clear class="footer-icon search" [ngClass]="{'activated':currentFooterItem=='SearchResult'}">
+    </button>
+  </div>
+  <div class="button-container" (tap)="navigateToConnect()">
+    <button ion-button icon-only clear class="footer-icon connect" [ngClass]="{'activated':currentFooterItem=='ConnectTab'}">
+    </button>
+    <div class="badge-button" *ngIf="connectCount">{{connectCount}}</div>
+  </div>
+  <div class="button-container" (tap)="navigateToProfile()">
+    <button ion-button icon-only clear class="footer-icon profile" [ngClass]="{'activated':currentFooterItem=='Profile'}">
+  </button>
+  </div>
+</ion-toolbar>

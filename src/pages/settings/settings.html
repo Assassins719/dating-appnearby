@@ -1,0 +1,74 @@
+<ion-header>
+  <menu-header [pageTitle]="pageTitle"> </menu-header>
+</ion-header>
+
+<ion-content>
+
+  <ion-card>
+    <ion-card-header class="font1">
+      Email
+    </ion-card-header>
+    <ion-card-content>
+      <input class="custom-email" type="email" [(ngModel)]="user.email"/>
+      <div>
+       <a class="font3" (tap)="changeEmail(user.email)">Change Email</a>
+      </div>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-content>
+      <ion-grid>
+        <ion-row>
+          <ion-col no-padding>
+            Change Password
+          </ion-col>
+          <ion-col text-right no-padding>
+            <a class="font3" (tap)="changePassword(user.email)">Change Password</a>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-content class="activity-list">
+      <ion-grid class="your-activity">
+        <ion-row>
+          <ion-col col-3 no-padding>
+             Activity
+          </ion-col>
+          <ion-col col-9 no-padding class="custom-radio">
+            <label [ngClass]="{'active': user.is_Activity_hidden === false}">
+        		  <input type="radio" name="activity" [value]="false" [(ngModel)] = 'user.is_Activity_hidden' (change)="setAll(false)" /> Visible
+      		  </label>
+            <label [ngClass]="{'active': user.is_Activity_hidden === true}">
+          		<input type="radio" name="activity" [value]="true" [(ngModel)] = 'user.is_Activity_hidden' (change)="setAll(true)" /> Hidden
+        		</label>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+      <ion-item>
+        <ion-label>Hide Online Status</ion-label>
+        <ion-toggle class="custom-ion-toggle" [(ngModel)]="user.hideOnlineStatus"></ion-toggle>
+      </ion-item>
+      <ion-item>
+        <ion-label>Hide When You View Someone</ion-label>
+        <ion-toggle class="custom-ion-toggle" [(ngModel)]="user.hideViewSomeone"></ion-toggle>
+      </ion-item>
+      <ion-item>
+        <ion-label>Hide When You Favorite Someone </ion-label>
+        <ion-toggle class="custom-ion-toggle" [(ngModel)]="user.hideFevSomeone"></ion-toggle>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-fab right bottom>
+    <button ion-fab class="cust-icon fav-save" (tap)="updateSetting()"></button>
+  </ion-fab>
+
+</ion-content>
+
+<ion-footer>
+  <footer-button></footer-button>
+</ion-footer>

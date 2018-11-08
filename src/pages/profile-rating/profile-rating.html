@@ -1,0 +1,105 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Safety Rating</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+  <ion-card class="custom-ion-card">
+    <ion-card-header class="custom-ion-card-header">
+      Rating
+    </ion-card-header>
+    <ion-card-content *ngIf="readOnly">
+      <rating [rating]="ratingObj.ratingGiven" text-center></rating>
+    </ion-card-content>
+    <ion-card-content *ngIf="!readOnly">
+      <div text-right class="star-count"><strong>{{ ratingObj.ratingGiven }}</strong> <small>star</small></div>
+      <ion-range class="custom-ion-range" min="1" max="5" snaps="true" step="1" [(ngModel)]="ratingObj.ratingGiven"></ion-range>
+      <div class="row range-mark">
+        <div class="col" text-left><small>1 star</small></div>
+        <div class="col" text-right><small>5 star</small></div>
+      </div>
+    </ion-card-content>
+  </ion-card>
+  <ion-card class="toggle-card">
+    <ion-card-content>
+      <ion-item>
+        <ion-label>Pictures were fake</ion-label>
+        <ion-toggle [disabled]="readOnly" class="custom-ion-toggle" [(ngModel)]="ratingObj.fakePicture"></ion-toggle>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
+  <ion-card class="toggle-card">
+    <ion-card-content>
+      <ion-item>
+        <ion-label>Didn't pay as agreed</ion-label>
+        <ion-toggle [disabled]="readOnly" class="custom-ion-toggle" [(ngModel)]="ratingObj.payAsAgreed"></ion-toggle>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
+  <ion-card class="toggle-card">
+    <ion-card-content>
+      <ion-item>
+        <ion-label>Didn't perform as agreed</ion-label>
+        <ion-toggle [disabled]="readOnly" class="custom-ion-toggle" [(ngModel)]="ratingObj.performAsAgreed"></ion-toggle>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
+  <ion-card class="toggle-card">
+    <ion-card-content>
+      <ion-item>
+        <ion-label>Didn't show up</ion-label>
+        <ion-toggle [disabled]="readOnly" class="custom-ion-toggle" [(ngModel)]="ratingObj.showUp"></ion-toggle>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
+  <ion-card class="toggle-card">
+    <ion-card-content>
+      <ion-item>
+        <ion-label>Late</ion-label>
+        <ion-toggle [disabled]="readOnly" class="custom-ion-toggle" [(ngModel)]="ratingObj.late"></ion-toggle>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
+  <ion-card class="toggle-card">
+    <ion-card-content>
+      <ion-item>
+        <ion-label>Verbally abusive</ion-label>
+        <ion-toggle [disabled]="readOnly" class="custom-ion-toggle" [(ngModel)]="ratingObj.verballyAbusive"></ion-toggle>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
+  <ion-card class="toggle-card">
+    <ion-card-content>
+      <ion-item>
+        <ion-label>Physically abusive</ion-label>
+        <ion-toggle [disabled]="readOnly" class="custom-ion-toggle" [(ngModel)]="ratingObj.physicallyAbusive"></ion-toggle>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
+  <ion-card class="toggle-card">
+    <ion-card-content>
+      <ion-item>
+        <ion-label>Stole something from me</ion-label>
+        <ion-toggle [disabled]="readOnly" class="custom-ion-toggle" [(ngModel)]="ratingObj.stole"></ion-toggle>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
+  <ion-card class="toggle-card">
+    <ion-card-content>
+      <ion-item>
+        <ion-label>Requesting money without meeting (scam)</ion-label>
+        <ion-toggle [disabled]="readOnly" class="custom-ion-toggle" [(ngModel)]="ratingObj.money"></ion-toggle>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
+  <ion-fab right bottom>
+    <button ion-fab class="cust-icon fav-submit" (tap)="submitRating()"></button>
+  </ion-fab>
+  <div class="down-space"></div>
+
+</ion-content>
+
+
+<ion-footer>
+  <footer-button></footer-button>
+</ion-footer>

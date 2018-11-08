@@ -1,0 +1,68 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Sign Up</ion-title>
+  </ion-navbar>
+
+</ion-header>
+<ion-content>
+  <div class="image-container-login">
+    <img src="assets/images/intro-banner.png">
+  </div>
+  <div class="form-container">
+    <form #formData='ngForm' (ngSubmit)="onSubmit(formData)" novalidate>
+      <div class="form-input-container right-padding">
+        <ion-input type="text" placeholder="User Name" maxlength="35" [(ngModel)]="userName" name="userName" class="text-right" required></ion-input>
+        <div class="image-container right-icon"><img src="assets/images/signup-icon-user.png"></div>
+      </div>
+
+      <div class="form-input-container left-padding">
+        <ion-input type="email" placeholder="Email" [(ngModel)]="email"  maxlength="35" name="email" required></ion-input>
+        <div class="image-container left-icon"><img src="assets/images/signup-icon-email.png"></div>
+      </div>
+
+      <div class="form-input-container right-padding">
+        <ion-input type="password" placeholder="Password" maxlength="30" class="text-right" [(ngModel)]="password" name="password" required></ion-input>
+        <div class="image-container right-icon"><img src="assets/images/signup-icon-password.png"> </div>
+      </div>
+
+      <div class="form-input-container left-padding">
+        <ion-input
+          type="password" placeholder="Re-enter Password"
+          maxlength="30"
+          [(ngModel)]="repassword"
+          name="repassword" required>
+        </ion-input>
+        <div class="image-container left-icon"><img src="assets/images/signup-icon-password.png"></div>
+      </div>
+
+      <div class="form-input-container right-padding">
+        <ion-input type="tel" class="text-right" placeholder="Phone" maxlength="12" [(ngModel)]="phone" name="phone" required></ion-input>
+        <div class="image-container right-icon"><img src="assets/images/signup-icon-phone.png"> </div>
+      </div>
+
+      <span class="error" *ngIf="error">{{ error }}</span>
+
+      <div class="form-input-container">
+            <ion-row>
+              <ion-col col-1>
+                  <ion-checkbox name="terms" [(ngModel)]="terms"></ion-checkbox>
+              </ion-col>
+              <ion-col>
+                  <ion-label>Please agree <a class="terms" (tap)="open()">terms & conditions.</a> </ion-label>
+              </ion-col>
+            </ion-row>
+      </div>
+
+
+      <div class="button-container">
+        <button id="recaptcha-container" ion-button round outline type="submit" color="button" class="date-button" [disabled]="!formData.valid">
+          Confirm
+        </button>
+      </div>
+
+    </form>
+  </div>
+
+
+</ion-content>

@@ -1,0 +1,23 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Chat Picture Slider</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+  <ion-slides pager>
+
+    <ion-slide>
+      <img [src]="path"/>
+    </ion-slide>
+
+  </ion-slides>
+
+  <ion-fab right bottom>
+    <button ion-fab class="cust-icon fav-search" (tap)="dismiss()"></button>
+  </ion-fab>
+
+</ion-content>

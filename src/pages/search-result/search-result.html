@@ -1,0 +1,124 @@
+<ion-header>
+  <menu-header [pageTitle]="pageTitle"> </menu-header>
+   <ion-card>
+     <ion-card-header>
+       <ion-grid>
+         <ion-row>
+           <ion-col col-5>
+             <span class="select-title">Sort By : </span>
+           </ion-col>
+           <ion-col col-2></ion-col>
+           <ion-col col-5>
+             <span class="select-title">Search : </span>
+           </ion-col>
+         </ion-row>
+         <ion-row>
+           <ion-col col-6>
+             <div class="selectBoxContainer">
+               <ion-select [(ngModel)]="sortBy" (ngModelChange)="onCategoryChange(sortBy)" >
+                 <ion-option value='distance' selected>Profile Distance </ion-option>
+                 <ion-option value='starRating'>Safety Rating</ion-option>
+                 <ion-option value='isOnline'>Online</ion-option>
+                 <!-- <ion-option value='gps'>GPS Distance</ion-option> -->
+                 <ion-option value='age'>Age</ion-option>
+                 <ion-option value='height'> Height</ion-option>
+               </ion-select>
+             </div>
+           </ion-col>
+           <ion-col col-1>
+             <div (tap)="toggleAscOrder()" class="asc-toggle">
+               <ion-icon ios="ios-arrow-dropup-outline" md="ios-arrow-dropup-outline" *ngIf="!ascOrder"></ion-icon>
+               <ion-icon ios="ios-arrow-dropdown-outline" md="ios-arrow-dropdown-outline" *ngIf="ascOrder"></ion-icon>
+             </div>
+           </ion-col>
+           <ion-col col-5>
+             <button class="custum-button search" *ngIf="!refineActive" (tap)="goToSearch()">
+               <ion-icon name="search"></ion-icon> Search
+             </button>
+             <button class="custum-button refine" *ngIf="refineActive" (tap)="goToSearch()">
+               <img src="assets/images/refine.png" />
+               Refine
+             </button>
+             <button class="custum-button" outline clear (tap)="reset()">
+               <ion-icon ios="ios-trash" md="ios-trash"></ion-icon> Clear
+             </button>
+           </ion-col>
+         </ion-row>
+       </ion-grid>
+     </ion-card-header>
+     <!-- <ion-card-content>
+       <div class="filter-list">
+           <div class="filter-item"> Body Types <ion-icon name="ios-close" class="close-icon"> </ion-icon> </div>
+           <div class="filter-item"> Age <ion-icon name="ios-close" class="close-icon"> </ion-icon> </div>
+           <div class="filter-item"> Height <ion-icon name="ios-close" class="close-icon"> </ion-icon></div>
+       </div>
+     </ion-card-content> -->
+   </ion-card>
+     <div class="listHeader">
+       <ion-grid>
+         <ion-row>
+           <ion-col col-7>
+             <span class="result-header">Featured Search Result</span>
+           </ion-col>
+
+           <ion-col col-5>
+             <span class="result">About {{userList.length}} Result</span>
+           </ion-col>
+         </ion-row>
+       </ion-grid>
+     </div>
+ </ion-header>
+ <ion-content>
+   <ion-list>
+     <div *ngFor="let user of userList">
+       <ion-item (tap)="goToProfile(user.key)">
+           <ion-grid>
+             <ion-row>
+               <ion-col col-2>
+                 <div class="thumb-image-containet">
+                   <img [src]="user.profilePicPath" *ngIf="user.profilePicPath" />
+                   <img src="assets/images/1495971155_profle.png" *ngIf="!user.profilePicPath" />
+                 </div>
+               </ion-col>
+               <ion-col col-9>
+                 <div class="name">
+                   {{user.userName}}
+                   <img *ngIf="user.isPaidMember" src="assets/images/icon-paid-member.png"/>
+                 </div>
+                 <div class="hobbies">
+                   <span *ngIf="!user.description">No desciption available.</span>
+                   <span *ngIf="user.description">{{user.description}}</span>
+                 </div>
+                 <ion-row>
+                     <ion-col col-3>
+                      <rating [rating]="user.starRating" > </rating>
+                     </ion-col>
+                     <ion-col col-2>
+                         <div class="image-container">
+                           <img src="assets/images/list-dob-icon.png"> {{ user.age }}
+                         </div>
+                     </ion-col>
+                     <ion-col col-7>
+                       <div class="locaion-image" *ngIf="user.currentPlace">
+                         <img src="assets/images/list-location-icon.png"> Current Dist. {{ user.distance | number:'1.1-1' }} Miles
+                       </div>
+                     </ion-col>
+                 </ion-row>
+               </ion-col>
+               <ion-col col-1>
+                 <div class="status-container">
+                   <div class="status" *ngIf="user.isOnline">Online</div>
+                   <div class="status offline" *ngIf="!user.isOnline">Offline</div>
+                   <ion-icon class="fav active" name="md-heart" *ngIf="user.isFav"> </ion-icon>
+                   <ion-icon class="fav" name="md-heart" *ngIf="!user.isFav"> </ion-icon>
+                 </div>
+               </ion-col>
+             </ion-row>
+           </ion-grid>
+       </ion-item>
+     </div>
+   </ion-list>
+ </ion-content>
+ <ion-footer>
+   <footer-button [pageTitle]="pageName"></footer-button>
+ </ion-footer>

@@ -1,0 +1,74 @@
+<ion-menu [content]="content" *ngIf="showSidePanel" class="page-search-list-sidemenu">
+  <ion-content>
+     <div class="header-user-profile" (tap)="openPage('EditProfile')" menuClose>
+       <div class="image-container">
+         <img src="assets/images/icon-edit.png"/>
+       </div>
+     </div>
+      <div class="user-profile">
+        <div class="image-container" (tap)="openPage('EditProfile')" menuClose>
+            <img [src]="user.profilePicPath" *ngIf="user.profilePicPath"/>
+            <img src="assets/images/1495971155_profle.png" *ngIf="!user.profilePicPath" />
+        </div>
+        <h4> {{ user.userName }} </h4>
+        <rating  [rating]="user.starRating" > </rating>
+        <div class="user-detail-container">
+          <div class="user-image-container" *ngIf="user.age > 0">
+            <img src="assets/images/list-dob-icon.png">  <span> {{ user.age }} </span>
+          </div>
+          <div class="user-image-container" *ngIf="user.gender">
+            <ion-icon name="md-female" *ngIf="user.gender === 'Female'"> </ion-icon>
+            <ion-icon name="md-male" *ngIf="user.gender === 'Male'"> </ion-icon>
+            <span> {{ user.gender }} </span>
+          </div>
+          <div class="user-image-container">
+            <img src="assets/images/icon-online.png" *ngIf="user.isOnline">
+            <img src="assets/images/icon-offline.png" *ngIf="!user.isOnline">
+          </div>
+        </div>
+      </div>
+      <div class="user-profile-bottom">
+          <!-- <h5 text-center> Subscription Status</h5>
+
+          <h5 class="highlight" text-center>
+            Complimentary Premium Subscription
+              </h5>
+ Disable Payment Options Temporarily to Pass Apple Requirements
+          <h5 class="highlight" text-center *ngIf="user.isPaidMember">
+            {{ subcriptionLeftInDays }}
+            <span *ngIf="subcriptionLeftInDays <= 1">Day</span>
+            <span *ngIf="subcriptionLeftInDays > 1">Days</span> Left
+          </h5>
+          <h5 class="highlight" text-center *ngIf="!user.isPaidMember">
+            Free Member
+          </h5>
+          <div class="subscribe" *ngIf="!user.isPaidMember">
+              <button ion-button (tap)="openPage('Subscribe')" menuClose>Upgrade Now!</button>
+          </div>
+
+-->
+          <div class="ion-list-container">
+          <ion-list>
+              <ion-item (click)="openPage('Settings')" menuClose>
+                 <div class="logo-container"> <ion-icon name="md-cog"> </ion-icon> </div> Settings
+              </ion-item>
+
+              <ion-item (click)="openPage('Contactus')" menuClose>
+                 <div class="logo-container"> <img src="assets/images/icon-contacts.png"/> </div> Contact us
+              </ion-item>
+
+              <ion-item (click)="openPage('UseApp')" menuClose>
+                  <div class="logo-container"> <img src="assets/images/icon-how-to-use.png"> </div> How to use this app
+              </ion-item>
+
+              <ion-item (click)="openPage('Logout')" menuClose>
+                  <div class="logo-container"> <img src="assets/images/icon-logout.png"> </div> Logout
+              </ion-item>
+
+          </ion-list>
+          </div>
+      </div>
+  </ion-content>
+</ion-menu>
+
+<ion-nav id="nav" [root]="rootPage" #content swipeBackEnabled="false" persistent="true"></ion-nav>

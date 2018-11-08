@@ -1,0 +1,47 @@
+page-rating-details {
+  .star-active{
+      color:#ffbd00;
+  }
+  .user-image-container{
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-left: 10px;
+  }
+
+  .star-inactive{
+      color:#979797;
+  }
+  .line{
+    display: inline-block;
+    width: calc(100% - 10px);
+    height: 1px;
+    margin: 0px 0px 5px -8px;
+    background: #000;
+  }
+  .negetive-list{
+    list-style: none;
+    margin: 10px;
+    padding: 0;
+    color: #ff364e;
+    ion-icon{
+      font-size: 20px;
+      vertical-align: top;
+      margin-right: 5px;
+    }
+    li{
+      padding: 0 0 10px 0;
+      text-transform: uppercase;
+      &.green{
+        color: green;
+      }
+    }
+  }
+
+  .report-rating{
+    text-align: center;
+    color: #ff364e;
+    font-weight: bold;
+  }
+}

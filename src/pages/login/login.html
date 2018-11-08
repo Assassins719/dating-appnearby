@@ -1,0 +1,30 @@
+<ion-content class="login-content">
+  <div class="image-container-login">
+    <img src="assets/images/login-top-banner.jpg">
+  </div>
+  <div class="form-container">
+    <form #formData='ngForm' (ngSubmit)="onSubmit(formData)">
+      <div class="form-input-container left-padding">
+        <div class="image-container left-icon"><img src="assets/images/signup-icon-email.png"></div>
+        <ion-input type="email" placeholder="Email" (ngModel)="email" name="email" required></ion-input>
+      </div>
+      <!--<div class="form-error"> Email id not valid.</div>-->
+      <div class="form-input-container right-padding">
+        <ion-input type="password" placeholder="Password" class="text-right" (ngModel)="password" name="password" required></ion-input>
+        <div class="image-container right-icon"><img src="assets/images/signup-icon-password.png"> </div>
+      </div>
+      <span class="form-error" *ngIf="error">{{ error }}</span>
+      <div class="button-container">
+        <button type="submit" ion-button round outline color="button" class="date-button" [disabled]="!formData.valid">Login</button>
+      </div>
+    </form>
+
+     <div padding class="confirm-text" (tap)="navigateToForgetPassword()">
+      Forgot Password
+    </div>
+
+     <div padding class="join-free" (tap)="navigateToSignup()">
+      Join Free Today
+    </div>
+  </div>
+</ion-content>

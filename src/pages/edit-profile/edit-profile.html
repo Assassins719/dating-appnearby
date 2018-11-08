@@ -1,0 +1,189 @@
+<ion-header>
+  <menu-header [pageTitle]="pageTitle"> </menu-header>
+  <!--<ion-navbar>
+    <ion-title>Edit Profile</ion-title>
+  </ion-navbar>-->
+</ion-header>
+<ion-content>
+  <ion-card>
+    <ion-card-header>
+      Add Profile Picture
+    </ion-card-header>
+    <ion-card-content>
+      <ion-grid>
+        <ion-row align-items-center>
+          <ion-col col-3 text-center>
+            <button class="cust-icon gallery" (tap)="openCamera()"></button>
+          </ion-col>
+          <ion-col col-6 text-center>
+            <div class="cust-icon profile-thumbnail" >
+              <img [src]="user.profilePicPath" *ngIf="user.profilePicPath"/>
+              <img src="assets/images/1495971155_profle.png" *ngIf="!user.profilePicPath" />
+            </div>
+            <button (tap)="goToUploadPic()" ion-button color="button" class="add-buton image-gallery"> Go To Gallery </button>
+          </ion-col>
+          <ion-col col-3 text-center>
+            <button class="cust-icon camera" (tap)="openCamera(true)"></button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+  <ion-list>
+    <ion-item>
+      <ion-label>Username <span class="required">*</span></ion-label>
+      <ion-input no-margin text-right type="text" [(ngModel)]="user.userName">
+      </ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Description</ion-label>
+      <!--<ion-input no-margin text-right type="text" [(ngModel)]="user.description">
+      </ion-input>-->
+      <ion-textarea [(ngModel)]="user.description" maxlength="200"></ion-textarea>
+    </ion-item>
+    <ion-item>
+      <ion-label>Date of birth <span class="required">*</span></ion-label>
+      <ion-datetime displayFormat="DD MMM YYYY" max="{{maxYear}}" [(ngModel)]="user.dateOfBirth"></ion-datetime>
+    </ion-item>
+    <ion-item>
+      <ion-label>Sex <span class="required">*</span></ion-label>
+      <ion-select [(ngModel)]="user.gender">
+        <ion-option value="Male">Male</ion-option>
+        <ion-option value="Female">Female</ion-option>
+        <ion-option value="Other">Other</ion-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label>Looking For <span class="required">*</span> </ion-label>
+      <ion-select [(ngModel)]="user.lookingFor">
+        <ion-option value="Men">Men</ion-option>
+        <ion-option value="Women">Women</ion-option>
+        <ion-option value="Both">Both</ion-option>
+      </ion-select>
+    </ion-item>
+    <ion-item (tap)="showAddressModal()">
+      <ion-label>Home location <span class="required">*</span></ion-label>
+      <ion-input no-margin text-right type="text"
+        class="location" readonly
+        [(ngModel)]="user.homePlace"
+        placeholder="Select home location">
+      </ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Body Type</ion-label>
+      <ion-select [(ngModel)]="user.bodyType">
+        <ion-option value="Slim">Slim</ion-option>
+        <ion-option value="Athletic">Athletic</ion-option>
+        <ion-option value="Average">Average</ion-option>
+        <ion-option value="Curvy">Curvy</ion-option>
+        <ion-option value="A few extra pounds">A few extra pounds</ion-option>
+        <ion-option value="Full/Overweight">Full/Overweight</ion-option>
+        <ion-option value="Other">Other</ion-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-card class="custom-ion-card">
+      <ion-card-header class="custom-ion-card-header">
+        Height
+      </ion-card-header>
+      <ion-card-content>
+        <div text-right class="star-count"><strong>{{ user.height | height }}</strong> </div>
+        <ion-range min="55" max="84" snaps="true" step="1" class="custom-ion-range" [(ngModel)]="user.height"></ion-range>
+        <div class="row range-mark">
+          <div class="col" text-left><small>4'7''</small></div>
+          <div class="col" text-right><small>7'</small></div>
+        </div>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-item>
+      <ion-label>Ethnicity</ion-label>
+      <ion-select [(ngModel)]="user.ethnicity">
+        <ion-option value="Asian">Asian</ion-option>
+        <ion-option value="Black/African Descent">Black/African Descent</ion-option>
+        <ion-option value="Latin/Hispanic">Latin/Hispanic</ion-option>
+        <ion-option value="East Indian">East Indian</ion-option>
+        <ion-option value="Middle Eastern">Middle Eastern</ion-option>
+        <ion-option value="Mixed">Mixed</ion-option>
+        <ion-option value="Native American">Native American</ion-option>
+        <ion-option value="Pacific Islander">Pacific Islander</ion-option>
+        <ion-option value="White/Cascasian">White/Cascasian</ion-option>
+        <ion-option value="Other">Other</ion-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label>Hair color</ion-label>
+      <ion-select [(ngModel)]="user.hairColor">
+        <ion-option value="Auburn">Auburn</ion-option>
+        <ion-option value="Black">Black</ion-option>
+        <ion-option value="Blonde">Blonde</ion-option>
+        <ion-option value="Light Brown">Light Brown</ion-option>
+        <ion-option value="Dark Brown">Dark Brown</ion-option>
+        <ion-option value="Grey">Grey</ion-option>
+        <ion-option value="Red">Red</ion-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label>Occupation</ion-label>
+      <ion-input type="text" text-right [(ngModel)]="user.occupation" maxlength="50"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Smoking</ion-label>
+      <ion-select [(ngModel)]="user.smoking">
+        <ion-option value="Non Smoker">Non Smoker</ion-option>
+        <ion-option value="Light Smoker">Light Smoker</ion-option>
+        <ion-option value="Heavy Smoker">Heavy Smoker</ion-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label>Drinking</ion-label>
+      <ion-select [(ngModel)]="user.drinking">
+        <ion-option value="Non Drinker">Non Drinker</ion-option>
+        <ion-option value="Social Drinker">Social Drinker</ion-option>
+        <ion-option value="Heavy Drinker">Heavy Drinker</ion-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label>Relationship</ion-label>
+      <ion-select [(ngModel)]="user.relationship">
+        <ion-option value="Single">Single</ion-option>
+        <ion-option value="Divorced">Divorced</ion-option>
+        <ion-option value="Separated">Separated</ion-option>
+        <ion-option value="Married but Looking">Married but Looking</ion-option>
+        <ion-option value="Open Relationship">Open Relationship</ion-option>
+        <ion-option value="Widowed">Widowed</ion-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label>Education</ion-label>
+      <ion-select [(ngModel)]="user.education">
+        <ion-option value="High School">High School</ion-option>
+        <ion-option value="Some College">Some College</ion-option>
+        <ion-option value="Associates Degree">Associates Degree</ion-option>
+        <ion-option value="Bachelors Degree">Bachelors Degree</ion-option>
+        <ion-option value="Graduate Degree">Graduate Degree</ion-option>
+        <ion-option value="PhD/Post Doctoral">Phd/Post Graduate Degree</ion-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label>Children</ion-label>
+      <ion-select [(ngModel)]="user.children">
+        <ion-option value="Prefer not to say">Prefer not to say</ion-option>
+        <ion-option value="No">No</ion-option>
+        <ion-option value="1">1</ion-option>
+        <ion-option value="2">2</ion-option>
+        <ion-option value="3">3</ion-option>
+        <ion-option value="4">4</ion-option>
+        <ion-option value="5">5</ion-option>
+        <ion-option value="6+">6+</ion-option>
+      </ion-select>
+    </ion-item>
+    <div class="down-space"></div>
+  </ion-list>
+  <ion-fab right bottom>
+    <button ion-fab class="cust-icon fav-save" (tap)="navigateToProfile()"></button>
+  </ion-fab>
+</ion-content>
+<ion-footer>
+  <footer-button></footer-button>
+</ion-footer>

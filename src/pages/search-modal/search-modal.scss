@@ -1,0 +1,46 @@
+page-search-modal {
+  .selectBoxContainer {
+    border: 1px solid #c5c7d2;
+    position: relative;
+    height: 40px;
+    padding: 5px;
+    margin: 15px 0 0;
+
+    ion-select.select {
+      padding: 4px 0 0 4px;
+      max-width: inherit;
+
+      .select-icon-inner {
+        left: 0;
+      }
+    }
+  }
+
+  .reset {
+    color: #ff3161;
+    margin: 10px 0 0;
+    display: inline-block;
+  }
+
+  .updateBtn {
+    padding: 10px;
+    text-transform: inherit;
+    font-weight: bold;
+    background: #ff3217;
+    background: -webkit-gradient(left top, left bottom, color-stop(0%, #ff3217), color-stop(59%, #f02f17), color-stop(100%, #ff0055));
+    background: linear-gradient(to bottom, #ff3217 0%, #f02f17 59%, #ff0055 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr= '#ff3217', endColorstr='#ff0055', GradientType=0 );
+  }
+  .other-location{
+    border: 1px solid #c5c7d2;
+    height: 40px;
+    padding: 5px;
+    margin: 15px 0 0;
+    width: 100%;
+  }
+
+  .current-location {
+    margin-top: 10px;
+    font-size: 12px;
+  }
+}

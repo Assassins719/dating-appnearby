@@ -1,0 +1,340 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Search</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+  <ion-card class="custom-ion-card">
+    <ion-card-header class="custom-ion-card-header">
+      New Search
+    </ion-card-header>
+    <ion-card-content>
+      <div class="selectBoxContainer" *ngIf="searchList.length">
+        <ion-select [(ngModel)]="currentSearchItem" (ionChange)="loadSearch()" placeholder="Saved Searches & Options">
+          <ion-option *ngFor="let item of searchList" [value]="item" checked="true">{{item.title}}</ion-option>
+        </ion-select>
+      </div>
+      <ion-grid no-padding>
+        <ion-row>
+          <ion-col col-3 no-padding margin-top>
+            <a class="reset" (tap)="reset()">Reset All</a>
+          </ion-col>
+          <ion-col col-9 no-padding margin-top text-right>
+            <button ion-button class="updateBtn" *ngIf="currentSearchItem" (tap)="delete()">Delete</button>
+            <button ion-button class="updateBtn" *ngIf="currentSearchItem" (tap)="update()">Update</button>
+            <button ion-button class="updateBtn" (tap)="save()">Save New</button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+  <ion-card class="custom-ion-card" *ngIf="currentPlace" >
+    <ion-card-header class="custom-ion-card-header">
+      Your current location
+    </ion-card-header>
+    <ion-card-content>
+      <div class="current-location">
+        {{ currentPlace }}
+      </div>
+    </ion-card-content>
+  </ion-card>
+  <ion-card class="custom-ion-card">
+    <ion-card-header class="custom-ion-card-header">
+      Location Search
+    </ion-card-header>
+    <ion-card-content>
+      <ion-grid no-padding>
+        <ion-row>
+          <ion-col col-6 no-padding margin-top class="custom-radio">
+            <label [ngClass]="{'active': srchRef.location === 'all'}">
+          		<input type="radio" name="location" value="all" [(ngModel)] = "srchRef.location" /> All
+            </label>
+          </ion-col>
+          <ion-col col-6 no-padding margin-top class="custom-radio">
+            <label [ngClass]="{'active': srchRef.location === 'current'}">
+          		<input type="radio" name="location" value="current" [(ngModel)] = "srchRef.location" /> Current Location
+      			</label>
+          </ion-col>
+          <ion-col col-6 no-padding margin-top class="custom-radio">
+            <label [ngClass]="{'active': srchRef.location === 'other'}">
+          		<input type="radio" name="location" value="other" [(ngModel)] = "srchRef.location" /> Other Location
+      			</label>
+          </ion-col>
+          <ion-col col-6 no-padding margin-top class="custom-radio">
+            <label [ngClass]="{'active': srchRef.location === 'home'}">
+          		<input type="radio" name="location" value="home" [(ngModel)] = "srchRef.location" /> Home Location
+            </label>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+    <ion-card class="custom-ion-card" *ngIf="srchRef.location === 'other'" (tap)="showAddressModal()">
+      <ion-card-header class="custom-ion-card-header">
+        Other Location Select
+      </ion-card-header>
+      <ion-card-content>
+        <input type="text" class="other-location" [(ngModel)]="srchRef.otherLoc" readonly />
+      </ion-card-content>
+    </ion-card>
+    <ion-card-header *ngIf="srchRef.location !== 'all'">
+      <ion-grid>
+        <ion-row>
+          <ion-col col-3 no-padding class="custom-ion-card-header">
+            Distance
+          </ion-col>
+          <ion-col col-3 no-padding offset-6>
+            <div text-right class="star-count"><strong>{{ srchRef.distance }}</strong> <small>miles</small></div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-header>
+    <ion-card-content *ngIf="srchRef.location !== 'all'">
+      <ion-range class="custom-ion-range" min="0" max="1000" snaps="true" step="25" [(ngModel)]="srchRef.distance"></ion-range>
+      <div class="row range-mark">
+        <div class="col" text-left><small>0 miles</small></div>
+        <div class="col" text-right><small>1000 miles</small></div>
+      </div>
+    </ion-card-content>
+  </ion-card>
+  <ion-card class="custom-ion-card">
+    <ion-card-header class="custom-ion-card-header">
+      Rating
+    </ion-card-header>
+    <ion-card-content>
+      <div text-right class="star-count"><strong>{{ srchRef.rating }}</strong> <small>star and above</small></div>
+      <ion-range class="custom-ion-range" min="1" max="5" snaps="true" step="1" [(ngModel)]="srchRef.rating"></ion-range>
+      <div class="row range-mark">
+        <div class="col" text-left><small>1 star</small></div>
+        <div class="col" text-right><small>5 star</small></div>
+      </div>
+    </ion-card-content>
+  </ion-card>
+  <ion-card class="custom-ion-card">
+    <ion-card-header class="custom-ion-card-header">
+      Option
+    </ion-card-header>
+    <ion-card-content>
+      <ion-grid no-padding>
+        <ion-row>
+          <ion-col col-6 no-padding margin-top class="custom-checkbox">
+            <label [ngClass]="{'active': srchRef.option.photo }">
+          		<input type="checkbox" name="srchRef.option.photo" value="photo" [(ngModel)] = "srchRef.option.photo" /> Photo
+      			</label>
+          </ion-col>
+
+          <!--  Paid member part of search commented out for Apple not allowing reference to premium subscription
+          <ion-col col-6 no-padding margin-top class="custom-checkbox">
+            <label [ngClass]="{'active': srchRef.option.paid }">
+          		<input type="checkbox" name="srchRef.option.paid" value="paid" [(ngModel)] = "srchRef.option.paid" /> Paid Members Only
+      			</label>
+          </ion-col>
+        -->
+
+
+          <!-- <ion-col col-6 no-padding margin-top class="custom-checkbox">
+            <label [ngClass]="{'active': srchRef.option.viewed }">
+          		<input type="checkbox" name="srchRef.option" value="Viewed" [(ngModel)] = "srchRef.option.viewed" /> Viewed
+      			</label>
+          </ion-col>
+          <ion-col col-6 no-padding margin-top class="custom-checkbox">
+            <label [ngClass]="{'active': srchRef.option.viewedMe }">
+          		<input type="checkbox" name="srchRef.option" value="Viewed Me" [(ngModel)] = "srchRef.option.viewedMe" /> Viewed Me
+	      		</label>
+          </ion-col>
+          <ion-col col-6 no-padding margin-top class="custom-checkbox">
+            <label [ngClass]="{'active': srchRef.option.favorited }">
+          		<input type="checkbox" name="srchRef.option" value="Favorited" [(ngModel)] = "srchRef.option.favorited" /> Favorited
+	      		</label>
+          </ion-col>
+          <ion-col col-6 no-padding margin-top class="custom-checkbox">
+            <label [ngClass]="{'active': srchRef.option.unviewed }">
+          		<input type="checkbox" name="srchRef.option" value="Unviewed" [(ngModel)] = "srchRef.option.unviewed" /> Unviewed
+	      		</label>
+          </ion-col>
+          <ion-col col-6 no-padding margin-top class="custom-checkbox">
+            <label [ngClass]="{'active': srchRef.option.favoritedMe }">
+          		<input type="checkbox" name="srchRef.option" value="Favorited Me" [(ngModel)] = "srchRef.option.favoritedMe" /> Favorited Me
+	      		</label>
+          </ion-col> -->
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+  <ion-card class="custom-ion-card">
+    <ion-card-header class="custom-ion-card-header">
+      Age
+    </ion-card-header>
+    <ion-card-content>
+      <div text-right class="star-count"><strong>{{ srchRef.ageRange.lower }}</strong> - <strong>{{ srchRef.ageRange.upper }}</strong> <small></small></div>
+      <ion-range dualKnobs="true" min="18" max="60" snaps="true" step="1" class="custom-ion-range" [(ngModel)]="srchRef.ageRange"></ion-range>
+      <div class="row range-mark">
+        <div class="col" text-left><small>18</small></div>
+        <div class="col" text-right><small>60</small></div>
+      </div>
+    </ion-card-content>
+  </ion-card>
+  <ion-card class="custom-ion-card">
+    <ion-card-header class="custom-ion-card-header">
+      Height
+    </ion-card-header>
+    <ion-card-content>
+      <div text-right class="star-count"><strong>{{ floor((srchRef.heightRange.lower)/12) }}'{{ (srchRef.heightRange.lower)%12 }}''</strong> - <strong>{{ floor((srchRef.heightRange.upper)/12) }}'{{ (srchRef.heightRange.upper)%12 }}''</strong>        <small></small></div>
+      <ion-range dualKnobs="true" min="55" max="84" snaps="true" step="1" class="custom-ion-range" [(ngModel)]="srchRef.heightRange"></ion-range>
+      <div class="row range-mark">
+        <div class="col" text-left><small>4'7''</small></div>
+        <div class="col" text-right><small>7'</small></div>
+      </div>
+    </ion-card-content>
+  </ion-card>
+  <ion-card class="custom-ion-card">
+    <ion-card-header class="custom-ion-card-header">
+      Body Type
+    </ion-card-header>
+    <ion-card-content>
+      <ion-grid no-padding>
+        <ion-row>
+          <ion-col col-6 no-padding margin-top class="custom-checkbox" *ngFor="let option of bodyTypeList">
+            <label [ngClass]="{'active': srchRef.bodyType.indexOf(option) >= 0 }">
+          		<input
+                type="checkbox"
+                name="bodyType"
+                [checked]="srchRef.bodyType.indexOf(option) >= 0"
+                (change)="updateOption(srchRef.bodyType, option, $event, option)" />
+              {{option}}
+      			</label>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+  <ion-card class="custom-ion-card">
+    <ion-card-header class="custom-ion-card-header">
+      Ethnicity
+    </ion-card-header>
+    <ion-card-content>
+      <ion-grid no-padding>
+        <ion-row>
+          <ion-col col-6 no-padding margin-top class="custom-checkbox" *ngFor="let option of ethnicityList">
+            <label [ngClass]="{'active': srchRef.ethnicity.indexOf(option) >= 0 }">
+          		<input
+                type="checkbox"
+                name="ethnicity"
+                [checked]="srchRef.ethnicity.indexOf(option) >= 0"
+                (change)="updateOption(srchRef.ethnicity, option, $event, option)" />
+              {{option}}
+      			</label>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+  <ion-card class="custom-ion-card">
+    <ion-card-header class="custom-ion-card-header">
+      Hair color
+    </ion-card-header>
+    <ion-card-content>
+      <ion-grid no-padding>
+        <ion-row>
+          <ion-col col-6 no-padding margin-top class="custom-checkbox" *ngFor="let option of hairColorList">
+            <label [ngClass]="{'active': srchRef.hairColor.indexOf(option) >= 0 }">
+          		<input
+                type="checkbox"
+                name="hairColor"
+                [checked]="srchRef.hairColor.indexOf(option) >= 0"
+                (change)="updateOption(srchRef.hairColor, option, $event, option)" />
+              {{option}}
+      			</label>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+  <ion-card class="custom-ion-card">
+    <ion-card-header class="custom-ion-card-header">
+      Smoking
+    </ion-card-header>
+    <ion-card-content>
+      <ion-grid no-padding>
+        <ion-row>
+          <ion-col col-6 no-padding margin-top class="custom-checkbox" *ngFor="let option of smokingList">
+            <label [ngClass]="{'active': srchRef.smoking.indexOf(option) >= 0 }">
+          		<input
+                type="checkbox"
+                name="smoking"
+                [checked]="srchRef.smoking.indexOf(option) >= 0"
+                (change)="updateOption(srchRef.smoking, option, $event, option)" />
+              {{option}}
+      			</label>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+  <ion-card class="custom-ion-card">
+    <ion-card-header class="custom-ion-card-header">
+      Drinking
+    </ion-card-header>
+    <ion-card-content>
+      <ion-grid no-padding>
+        <ion-row>
+          <ion-col col-6 no-padding margin-top class="custom-checkbox" *ngFor="let option of drinkingList">
+            <label [ngClass]="{'active': srchRef.drinking.indexOf(option) >= 0 }">
+          		<input
+                type="checkbox"
+                name="drinking"
+                [checked]="srchRef.drinking.indexOf(option) >= 0"
+                (change)="updateOption(srchRef.drinking, option, $event, option)" />
+              {{option}}
+      			</label>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+  <ion-card class="custom-ion-card">
+    <ion-card-header class="custom-ion-card-header">
+      Relationship
+    </ion-card-header>
+    <ion-card-content>
+      <ion-grid no-padding>
+        <ion-row>
+          <ion-col col-6 no-padding margin-top class="custom-checkbox" *ngFor="let option of relationshipList">
+            <label [ngClass]="{'active': srchRef.relationship.indexOf(option) >= 0 }">
+          		<input
+                type="checkbox"
+                name="relationship"
+                [checked]="srchRef.relationship.indexOf(option) >= 0"
+                (change)="updateOption(srchRef.relationship, option, $event, option)" />
+              {{option}}
+      			</label>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+  <ion-card class="custom-ion-card">
+    <ion-card-header class="custom-ion-card-header">
+      Education
+    </ion-card-header>
+    <ion-card-content>
+      <ion-grid no-padding>
+        <ion-row>
+          <ion-col col-6 no-padding margin-top class="custom-checkbox" *ngFor="let option of educationList">
+            <label [ngClass]="{'active': srchRef.education.indexOf(option) >= 0 }">
+          		<input
+                type="checkbox"
+                name="education"
+                [checked]="srchRef.education.indexOf(option) >= 0"
+                (change)="updateOption(srchRef.education, option, $event, option)" />
+              {{option}}
+      			</label>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+    <div class="down-space"></div>
+  </ion-card>
+  <ion-fab right bottom>
+    <button ion-fab class="cust-icon fav-search" (tap)="search()"></button>
+  </ion-fab>
+</ion-content>

@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "859875496266",
+    "firebase_url": "https://datesapp-c775e.firebaseio.com",
+    "project_id": "datesapp-c775e",
+    "storage_bucket": "datesapp-c775e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:859875496266:android:c14f5b764109c29d",
+        "android_client_info": {
+          "package_name": "com.ncrts.dateapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "859875496266-6ttcp6vbfg0orvnrl248lbs8fkghg7mn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDc5xnZt7zeyRuhztWAJG3WAhj0XcMsYvE"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,221 @@
+<ion-header>
+  <menu-header [pageTitle]="pageTitle"> </menu-header>
+</ion-header>
+
+<ion-content *ngIf="user">
+
+  <ion-card>
+  	<div class="profile-pic">
+      <div class="primary-pic" (tap)="imageSlider()">
+	  	  <img [src]="user.profilePicPath" *ngIf="user.profilePicPath" />
+	  	  <img src="assets/images/1495971155_profle.png" *ngIf="!user.profilePicPath" />
+      </div>
+	  	<div class="profile-detail">
+		    <div class="profile-name">
+          {{user.userName}}
+          <img *ngIf="user.isPaidMember" src="assets/images/icon-paid-member.png"/>
+        </div>
+		    <div class="card-subtitle">
+		    	<div class="birthday">{{user.age}}</div>
+          <div class="gender {{user.gender}}">{{user.gender}}</div>
+          <rating [rating]="user.starRating" > </rating>
+		    	<div class="status">
+		    		<img src="assets/images/icon-online.png"/>
+		    	</div>
+		    </div>
+	  	</div>
+  	</div>
+  	<div class="button-stripe">
+      <div class="button-panel">
+    		<button (tap)="navigateToChat()" *ngIf="!is_owner">
+  	      <img src="assets/images/btn-chat.png"/>
+  	      Message
+  	    </button>
+    		<button (tap)="toggelFav()" *ngIf="!is_owner">
+  	      <img src="assets/images/list-fav-on.png" *ngIf="is_fav" />
+          <img src="assets/images/list-fav-off.png" *ngIf="!is_fav" />
+  	      Favorite
+  	    </button>
+        <button class="only-icon" (tap)="navigateToEdit()" *ngIf="is_owner">
+          <img src="assets/images/btn-img-edit.png"/>
+          Edit
+        </button>
+    		<button class="only-icon block" (tap)="toggelBlock()" *ngIf="!is_owner">
+          <span *ngIf="is_block">
+            <img src="assets/images/block.png" /> Unblock
+          </span>
+          <span *ngIf="!is_block">
+            <img src="assets/images/unblock.png" *ngIf="!is_block"/> Block
+          </span>
+  	    </button>
+      		<!-- <button class="only-icon" (tap)="navigateToSettings()" *ngIf="is_owner">
+  	      <img src="assets/images/icon-settings.png"/>
+          Settings
+  	    </button> -->
+    		<button class="only-icon" (tap)="navigateToRatingList()">
+  	      <img src="assets/images/star-off.png"/>
+          Rating
+  	    </button>
+    		<button class="only-icon wemet" (tap)="toggelMeet()" *ngIf="!is_owner">
+  	      <img src="assets/images/icon-met-on.png" *ngIf="is_meet"/>
+          <img src="assets/images/icon-met-off.png" *ngIf="!is_meet"/>
+          We Met
+  	    </button>
+    		<button class="only-icon" (tap)="navigateToProfileRating()" *ngIf="!is_owner">
+  	      <img src="assets/images/star-off.png"/>
+          Give Rating
+  	    </button>
+        <!--Added button for reporting users-->
+        <button class="only-icon block" (tap)="toggleReport()" *ngIf="!is_owner">
+          <span *ngIf="is_report">
+            <img src="assets/images/block.png" /> Cancel Report
+          </span>
+          <span *ngIf="!is_report">
+            <img src="assets/images/unblock.png" *ngIf="!is_report"/> Report Content
+          </span>
+        </button>
+      </div>
+  	</div>
+  </ion-card>
+
+  <ion-card class="description">
+    <div class="label">Description</div>
+    <div class="value" *ngIf="user.description">{{user.description}}</div>
+    <div class="value" *ngIf="!user.description">Not Specified</div>
+  </ion-card>
+
+  <ion-card>
+  	<ion-grid>
+      <ion-row>
+        <ion-col col-5>
+        	<span class="label">Looking for</span>
+        </ion-col>
+        <ion-col col-7>
+          <span class="value" *ngIf="user.lookingFor">{{user.lookingFor}}</span>
+          <span class="value" *ngIf="!user.lookingFor">Not Specified</span>
+        </ion-col>
+      </ion-row>
+      <!--<ion-row>
+        <ion-col col-5>
+        	<span class="label">Membership</span>
+        </ion-col>
+        <ion-col col-7>
+          <span class="value" *ngIf="user.isPaidMember">Paid</span>
+          <span class="value" *ngIf="!user.isPaidMember">Free</span>
+        </ion-col>
+      </ion-row>-->
+      <ion-row>
+        <ion-col col-5>
+        	<span class="label">Home Location</span>
+        </ion-col>
+        <ion-col col-7>
+          <span class="value">{{user.homePlace}}</span>
+        </ion-col>
+      </ion-row>
+      <!--  Hiding current location from profile because of security concerns.
+      <ion-row>
+        <ion-col col-5>
+        	<span class="label">Height</span>
+        </ion-col>
+        <ion-col col-7>
+          <span class="value" *ngIf="user.height">{{user.height | height}}</span>
+          <span class="value" *ngIf="!user.height">Not Specified</span>
+        </ion-col>
+      </ion-row>
+    -->
+      <ion-row>
+        <ion-col col-5>
+        	<span class="label">Age</span>
+        </ion-col>
+        <ion-col col-7>
+          <span class="value" *ngIf="user.age">{{user.age}}</span>
+          <span class="value" *ngIf="!user.age">Not Specified</span>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-5>
+        	<span class="label">Body Type</span>
+        </ion-col>
+        <ion-col col-7>
+          <span class="value" *ngIf="user.bodyType">{{user.bodyType}}</span>
+          <span class="value" *ngIf="!user.bodyType">Not Specified</span>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-5>
+        	<span class="label">Ethnicity</span>
+        </ion-col>
+        <ion-col col-7>
+          <span class="value" *ngIf="user.ethnicity">{{user.ethnicity}}</span>
+          <span class="value" *ngIf="!user.ethnicity">Not Specified</span>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-5>
+        	<span class="label">Smoking</span>
+        </ion-col>
+        <ion-col col-7>
+          <span class="value" *ngIf="user.smoking">{{user.smoking}}</span>
+          <span class="value" *ngIf="!user.smoking">Not Specified</span>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-5>
+        	<span class="label">Drinking</span>
+        </ion-col>
+        <ion-col col-7>
+          <span class="value" *ngIf="user.drinking">{{user.drinking}}</span>
+          <span class="value" *ngIf="!user.drinking">Not Specified</span>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-5>
+        	<span class="label">Education</span>
+        </ion-col>
+        <ion-col col-7>
+          <span class="value" *ngIf="user.education">{{user.education}}</span>
+          <span class="value" *ngIf="!user.education">Not Specified</span>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-5>
+        	<span class="label">Occupation</span>
+        </ion-col>
+        <ion-col col-7>
+          <span class="value" *ngIf="user.occupation">{{user.occupation}}</span>
+          <span class="value" *ngIf="!user.occupation">Not Specified</span>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-5>
+        	<span class="label">Relationship</span>
+        </ion-col>
+        <ion-col col-7>
+          <span class="value" *ngIf="user.relationship">{{user.relationship}}</span>
+          <span class="value" *ngIf="!user.relationship">Not Specified</span>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-5>
+        	<span class="label">Children</span>
+        </ion-col>
+        <ion-col col-7>
+          <span class="value" *ngIf="user.children">{{user.children}}</span>
+          <span class="value" *ngIf="!user.children">Not Specified</span>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card>
+
+  <ion-card>
+    <div class="label"><br><br><br><br><br><br></div>
+  </ion-card>
+
+
+</ion-content>
+
+
+<ion-footer>
+  <footer-button></footer-button>
+  <!--[pageTitle]="pageName">-->
+</ion-footer>

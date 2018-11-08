@@ -1,0 +1,62 @@
+page-settings {
+	.card-header {
+		padding-left: 20px;
+		padding-bottom: 10px;
+	}
+
+	a {
+		color: #ff3161;
+	}
+
+	.grid {
+		padding: 0;
+	}
+
+	.custom-email {
+		background: #fff;
+		padding: 8px 10px;
+		width: 100%;
+		margin-bottom: 8px;
+		border: 1px solid #e2e2e4;
+	}
+
+	.item.item-toggle ion-label {
+		margin: 8px 0;
+	}
+
+	.item.item-block {
+		min-height: inherit;
+		font-size: 1em;
+		margin-bottom: 5px;
+
+		.item-inner {
+			padding-right: 0;
+		}
+
+		ion-label {
+			font-size: 0.85em;
+			color: #5a5c62;
+			//font-family: avenir-lt-55-roman;
+		}
+	}
+
+	.your-activity {
+		margin-bottom: 10px;
+	}
+
+	.card-content {
+		padding: 15px 16px 10px;
+	}
+
+	.font1 {
+		font-size: 1em;
+	}
+
+	.font2 {
+		font-size: 0.85em;
+	}
+
+	.font3 {
+		font-size: 1.1em;
+	}
+}

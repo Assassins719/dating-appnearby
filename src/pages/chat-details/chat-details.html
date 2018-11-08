@@ -1,0 +1,74 @@
+<ion-header>
+  <ion-navbar>
+    <ion-buttons start>
+      <button menuToggle icon-only class="date-menu-icon">
+        <ion-icon name="md-menu"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>{{pageTitle}}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <div id="chatList" class="chat-container">
+    <div class="message-content-welcome-note" *ngIf="!chatList?.length">
+      Welcome the the chat feature. Please ping something to let your partner know.
+    </div>
+    <div *ngFor="let chatItem of chatList" class="ion-message"
+      [ngClass]="{'message-right':chatItem.senderUID !== toUserUid,'message-left':chatItem.senderUID === toUserUid}">
+      <div class="message-content" *ngIf="!chatItem.welcomeNote">
+        <!--<div class="sender-name" *ngIf="chatItem.senderUID === toUserUid">
+          {{ toUser.userName }}
+        </div>-->
+        <div class="message-content-top">
+          <div class="sender-details" *ngIf="chatItem.senderUID === toUserUid">
+            <img (tap)="goToProfile(chatItem.senderUID)" alt="{{ toUser.userName }}" draggable="false" [src]="toUser.profilePicPath" *ngIf="toUser.profilePicPath" />
+            <img (tap)="goToProfile(chatItem.senderUID)" alt="{{ toUser.userName }}" draggable="false" src="assets/images/1495971155_profle.png" *ngIf="!toUser.profilePicPath" />
+          </div>
+          <div class="message-body">
+            <div class="message-line-content" >
+              <div class="message-line" >
+                <span *ngIf="chatItem.chatType === 'Image'">
+                  <!--<ion-img width="300" height="300" [src]="chatItem.imagePath" (tap)="imagePopup(chatItem.imagePath)"></ion-img>-->
+                  <img [src]="chatItem.imagePath" (tap)="imagePopup(chatItem.imagePath)" />
+                </span>
+                <span *ngIf="chatItem.chatType === 'Text'">
+                  {{ chatItem.content }}
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="time-stamp">
+          {{ chatItem.sendingTime | date:'shortTime' }}
+        </div>
+      </div>
+      <div class="clear">
+      </div>
+    </div>
+  </div>
+</ion-content>
+<ion-footer>
+  <ion-toolbar>
+    <ion-grid no-padding>
+      <ion-row>
+        <ion-col align-self-end text-center col-auto>
+          <button class="chat-icon camera" (tap)="openCamera()">
+          </button>
+        </ion-col>
+        <ion-col class="text-area-content">
+          <textarea rows="1" [(ngModel)]="chat.content">
+          </textarea>
+        </ion-col>
+        <ion-col align-self-end  text-center col-auto>
+          <!--<button class="chat-icon mic" *ngIf="!chat.content">
+          </button>
+          <button class="chat-icon enter" *ngIf="chat.content" (tap)="chatEnter()" [disabled]="chat.content === ''">
+          </button>-->
+          <button class="chat-icon enter" (tap)="chatEnter()" [disabled]="!chat.content">
+          </button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-toolbar>
+</ion-footer>

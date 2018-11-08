@@ -1,0 +1,11 @@
+jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore my-release-key.keystore android-release-unsigned.apk alias_name
+cd /Users/avhijitdutta/Library/Android/sdk/build-tools/25.0.2 
+./zipalign -v 4  /Users/avhijitdutta/Project\ Freelance/Backup/dateios/platforms/android/build/outputs/apk/android-release-unsigned.apk dateapp.apk 
+
+./apksigner verify dateapp.apk
+
+
+
+npm install -g ionic@latest
+npm install --save-dev --save-exact @ionic/cli-plugin-cordova@latest
+npm install --save-dev --save-exact @ionic/cli-plugin-ionic-angular@latest

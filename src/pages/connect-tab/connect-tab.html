@@ -1,0 +1,190 @@
+<ion-header>
+
+ <menu-header [pageTitle]="pageTitle"> </menu-header>
+  <div class="tab-container">
+    <div class="tab-item" *ngFor="let tab of tabList;index as i;"
+    [ngClass]="{'active':tab === activeTab}" (click)="setTab(tab)">
+      {{tab.name}}
+      <div class="badge-button" *ngIf="counter[i]">{{counter[i]}}</div>
+    </div>
+  </div>
+  <ion-toolbar>
+     <div class="selectBoxContainer">
+        <span class="select-title">Sort By : </span>
+        <ion-select [(ngModel)]="sortBy" (ngModelChange)="onCategoryChange(sortBy)" >
+          <ion-option value='isOnline'>Online</ion-option>
+          <ion-option value='starRating'>Safety Rating</ion-option>
+          <ion-option value='age'>Age</ion-option>
+          <ion-option value='height'> Height</ion-option>
+        </ion-select>
+      </div>
+      <div (click)="toggleAscOrder()" class="asc-toggle">
+        <ion-icon ios="ios-arrow-dropup-outline" md="ios-arrow-dropup-outline" *ngIf="!ascOrder"></ion-icon>
+        <ion-icon ios="ios-arrow-dropdown-outline" md="ios-arrow-dropdown-outline" *ngIf="ascOrder"></ion-icon>
+      </div>
+  </ion-toolbar>
+
+</ion-header>
+
+<ion-content>
+  <div *ngIf="tabList[0] === activeTab">
+    <div class="message-content" *ngIf="viewedMeNoData">
+      No history available.
+    </div>
+    <ion-list>
+      <ion-item (click)="goToProfile(user.$key)" *ngFor="let user of viewedMeUserList">
+        <ion-grid>
+          <ion-row>
+            <ion-col col-2>
+              <div class="thumb-image-containet">
+                <img [src]="user.profilePicPath" *ngIf="user.profilePicPath" />
+                <img src="assets/images/1495971155_profle.png" *ngIf="!user.profilePicPath" />
+              </div>
+            </ion-col>
+            <ion-col col-7>
+              <div class="name">
+                {{user.userName}}
+              </div>
+              <div class="hobbies">
+                <span *ngIf="!user.description">No desciption available.</span>
+                <span *ngIf="user.description">{{user.description}}</span>
+              </div>
+              <ion-row>
+                  <ion-col col-3>
+                    <rating [rating]="user.starRating" > </rating>
+                  </ion-col>
+                  <ion-col col-2>
+                      <div class="image-container">
+                        <img src="assets/images/list-dob-icon.png"> {{ user.age }}
+                      </div>
+                  </ion-col>
+                  <ion-col col-7>
+                    <div class="locaion-image" *ngIf="user.currentPlace">
+                      <img src="assets/images/list-location-icon.png"> {{ (user.currentPlace).split(', ')[0] }}
+                    </div>
+                  </ion-col>
+              </ion-row>
+            </ion-col>
+            <ion-col col-3>
+              <div class="status-container">
+                <div class="status" *ngIf="user.isOnline">Online</div>
+                <div class="status offline" *ngIf="!user.isOnline">Offline</div>
+                <div class="chat-icon-container"> <img src="assets/images/topbar-message-icon.png"></div>
+                <ion-icon class="fav active" name="md-heart" *ngIf="user.isFav"> </ion-icon>
+                <ion-icon class="fav" name="md-heart" *ngIf="!user.isFav"> </ion-icon>
+              </div>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-item>
+    </ion-list>
+  </div>
+  <div *ngIf="tabList[1] === activeTab">
+    <div class="message-content" *ngIf="favNoData">
+      No history available.
+    </div>
+    <ion-list>
+      <ion-item (click)="goToProfile(user.$key)" *ngFor="let user of favUserList">
+        <ion-grid>
+          <ion-row>
+            <ion-col col-2>
+              <div class="thumb-image-containet">
+                <img [src]="user.profilePicPath" *ngIf="user.profilePicPath" />
+                <img src="assets/images/1495971155_profle.png" *ngIf="!user.profilePicPath" />
+              </div>
+            </ion-col>
+            <ion-col col-7>
+              <div class="name">
+                {{user.userName}}
+              </div>
+              <div class="hobbies">
+                <span *ngIf="!user.description">No desciption available.</span>
+                <span *ngIf="user.description">{{user.description}}</span>
+              </div>
+              <ion-row>
+                <ion-col col-4>
+                  <rating [rating]="user.starRating" > </rating>
+                </ion-col>
+                <ion-col col-2>
+                    <div class="image-container">
+                      <img src="assets/images/list-dob-icon.png"> {{ user.age }}
+                    </div>
+                </ion-col>
+                <ion-col col-6>
+                  <div class="locaion-image" *ngIf="user.location">
+                    <img src="assets/images/list-location-icon.png">{{ user.city }}, {{ user.state }}, {{ user.country }}
+                  </div>
+                </ion-col>
+              </ion-row>
+            </ion-col>
+            <ion-col col-3>
+              <div class="status-container">
+                <div class="status" *ngIf="user.isOnline">Online</div>
+                <div class="status offline" *ngIf="!user.isOnline">Offline</div>
+                <div class="chat-icon-container"> <img src="assets/images/topbar-message-icon.png"></div>
+                <ion-icon class="fav active" name="md-heart" *ngIf="user.isFav"> </ion-icon>
+                <ion-icon class="fav" name="md-heart" *ngIf="!user.isFav"> </ion-icon>
+              </div>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-item>
+    </ion-list>
+  </div>
+  <div *ngIf="tabList[2] === activeTab">
+    <div class="message-content" *ngIf="favMeNoData">
+      No history available.
+    </div>
+    <ion-list>
+      <ion-item (click)="goToProfile(user.$key)" *ngFor="let user of favMeUserList">
+        <ion-grid>
+          <ion-row>
+            <ion-col col-2>
+              <div class="thumb-image-containet">
+                <img [src]="user.profilePicPath" *ngIf="user.profilePicPath" />
+                <img src="assets/images/1495971155_profle.png" *ngIf="!user.profilePicPath" />
+              </div>
+            </ion-col>
+            <ion-col col-7>
+              <div class="name">
+                {{user.userName}}
+              </div>
+              <div class="hobbies">
+                <span *ngIf="!user.description">No desciption available.</span>
+                <span *ngIf="user.description">{{user.description}}</span>
+              </div>
+              <ion-row>
+                <ion-col col-4>
+                  <rating [rating]="user.starRating" > </rating>
+                </ion-col>
+                <ion-col col-2>
+                    <div class="image-container">
+                      <img src="assets/images/list-dob-icon.png"> {{ user.age }}
+                    </div>
+                </ion-col>
+                <ion-col col-6>
+                  <div class="locaion-image" *ngIf="user.location">
+                    <img src="assets/images/list-location-icon.png">{{ user.city }}, {{ user.state }}, {{ user.country }}
+                  </div>
+                </ion-col>
+              </ion-row>
+            </ion-col>
+            <ion-col col-3>
+              <div class="status-container">
+                <div class="status" *ngIf="user.isOnline">Online</div>
+                <div class="status offline" *ngIf="!user.isOnline">Offline</div>
+                <div class="chat-icon-container"> <img src="assets/images/topbar-message-icon.png"></div>
+                <ion-icon class="fav active" name="md-heart" *ngIf="user.isFav"> </ion-icon>
+                <ion-icon class="fav" name="md-heart" *ngIf="!user.isFav"> </ion-icon>
+              </div>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-item>
+    </ion-list>
+  </div>
+</ion-content>
+
+<ion-footer>
+  <footer-button [pageTitle]="pageName"></footer-button>
+</ion-footer>

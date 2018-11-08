@@ -1,0 +1,47 @@
+<ion-header>
+  <menu-header [pageTitle]="pageTitle"> </menu-header>
+</ion-header>
+
+<ion-content>
+  <img src="assets/images/intro-banner.png">
+
+  <form>
+    <ion-list padding>
+      <ion-item>
+        <ion-label stacked>Type</ion-label>
+        <ion-select [(ngModel)]="comment.type" name="type">
+          <ion-option value="Billing" active>Billing</ion-option>
+          <ion-option value="Technical Support">Technical Support</ion-option>
+          <ion-option value="Photo/Profile Approval">Photo/Profile Approval</ion-option>
+          <ion-option value="Suggestions/Feedback">Suggestions/Feedback</ion-option>
+          <ion-option value="Delete My Account">Delete My Account</ion-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-label stacked>Subject:</ion-label>
+        <ion-input type="text" value="" [(ngModel)]="comment.subject" name="subject"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label stacked>MESSAGE:</ion-label>
+        <!-- <textarea id="" cols="30" rows="10"></textarea> -->
+        <ion-textarea name="message" [(ngModel)]="comment.message"></ion-textarea>
+        <!-- <ion-input type="text" value="" ></ion-input> -->
+      </ion-item>
+    </ion-list>
+    <ion-grid>
+      <ion-row>
+        <ion-col col-6>
+          <button ion-button round outline color="button" float-right (tap)="reset()">Reset</button>
+        </ion-col>
+        <ion-col col-6>
+          <button ion-button round outline color="button" float-left (tap)="submitComment()">Submit</button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </form>
+</ion-content>
+
+
+<ion-footer>
+  <footer-button></footer-button>
+</ion-footer>

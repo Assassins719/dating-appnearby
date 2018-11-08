@@ -1,0 +1,57 @@
+<!--
+  Generated template for the UploadPic page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Add Photos</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+    <ion-card>
+    <ion-card-header>
+      <ion-grid>
+          <ion-row align-items-center>
+              <ion-col col-8>
+                   Add Photo
+              </ion-col>
+
+              <ion-col col-4>
+                  <button class="cust-icon gallery" (tap)="openCamera(false)"></button>
+                  <button class="cust-icon camera" (tap)="openCamera(true)"></button>
+              </ion-col>
+          </ion-row>
+      </ion-grid>
+    </ion-card-header>
+    <ion-card-content>
+      <div class="image-container" *ngIf="selectedPic">
+        <img [src]="selectedPic.url">
+        <div class="set-profile" *ngIf="selectedPic.is_approved && !selectedPic.is_profile" (tap)="setProfile(selectedPic)"> Set as Profile Picture</div>
+        <div class="not-approved" *ngIf="!selectedPic.is_approved"> Not Approve </div>
+        <div class="not-approved" *ngIf="selectedPic.is_approved && selectedPic.is_profile" (tap)="setProfile(selectedPic)"> Profile Pic</div>
+      </div>
+
+      <div class="image-container" *ngIf="!selectedPic"> <img src="assets/images/noImage.jpg"></div>
+    </ion-card-content>
+  </ion-card>
+  <ion-grid>
+      <ion-row>
+        <ion-col col-4 *ngFor="let item of coverPics">
+          <ion-card [ngClass]="{'selected':selectedPic==item}" (tap)="select(item)">
+            <div class="thumb-image-container">
+              <img [src]="item.url">
+              <div class="icon-container">
+                  <ion-icon name="md-close" (tap)="remove(item)"> </ion-icon> 
+              </div>
+            </div>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+  </ion-grid>
+</ion-content>

@@ -1,0 +1,28 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Location Search</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+  <ion-card class="custom-ion-card">
+    <ion-card-header class="custom-ion-card-header">
+      Search for location
+    </ion-card-header>
+    <ion-card-content>
+      <ion-searchbar
+        [(ngModel)]="autocomplete.query"
+        [showCancelButton]="true"
+        (ionInput)="updateSearch()"
+        (ionCancel)="dismiss()">
+      </ion-searchbar>
+      <ion-list>
+        <ion-item *ngFor="let item of autocompleteItems" tappable (tap)="chooseItem(item)">
+          {{ item }}
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+  <ion-fab right bottom>
+    <button ion-fab class="cust-icon fav-search" (tap)="dismiss()"></button>
+  </ion-fab>
+</ion-content>

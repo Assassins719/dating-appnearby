@@ -1,0 +1,18 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Profile Picture</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+  <ion-slides pager>
+
+    <ion-slide *ngFor="let item of listOfPics">
+      <img [src]="item.url"/>
+    </ion-slide>
+
+  </ion-slides>
+  <ion-fab right bottom>
+    <button ion-fab class="cust-icon fav-search" (tap)="dismiss()"></button>
+  </ion-fab>
+
+</ion-content>

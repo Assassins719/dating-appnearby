@@ -1,0 +1,53 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Rating List</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+  <ion-card *ngIf="user">
+    <ion-card-content>
+      <div class="img-container">
+        <img [src]="user.profilePicPath" *ngIf="user.profilePicPath" />
+        <img src="assets/images/1495971155_profle.png" *ngIf="!user.profilePicPath" />
+      </div>
+      <h2>{{user.userName}}</h2>
+      <rating [rating]="user.starRating"> </rating>
+    </ion-card-content>
+  </ion-card>
+
+  <div class="message-content-welcome-note" *ngIf="!ratingList.length">
+    No Rating has been recieved yet.
+  </div>
+
+  <ion-card (tap)="navigateToRatingDetails(user.$key)" *ngFor="let user of ratingList">
+    <ion-grid>
+      <ion-row>
+        <ion-col col-2>
+          <div class="user-image-container">
+            <img [src]="user.profilePicPath" *ngIf="user.profilePicPath" />
+            <img src="assets/images/1495971155_profle.png" *ngIf="!user.profilePicPath" />
+          </div>
+        </ion-col>
+
+        <ion-col col-6>
+          <h3 class="name">{{user.userName}}</h3>
+        </ion-col>
+
+        <ion-col col-4>
+          <rating [rating]="user.ratingGiven"> </rating>
+          <div class="date"> {{user.ratingDate | date }} </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card>
+
+</ion-content>
+
+
+<ion-footer>
+  <footer-button></footer-button>
+</ion-footer>

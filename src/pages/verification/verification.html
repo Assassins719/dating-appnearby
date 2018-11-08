@@ -1,0 +1,41 @@
+<ion-content>
+  <div class="image-container">
+    <img src="assets/images/login-top-banner.jpg">
+  </div>
+
+  <div class="form-container">
+
+    <p *ngIf="initMessage">
+      <!--Your account is not varified. If you want to verify your account then click on the "Send Email" botton. You will get a link by email to verify your account.
+      Send account verification link by email.-->
+    </p>
+    <p *ngIf="user">
+      Verification code successfully sent to "{{ user.phone }}" Number.
+      <br/>
+      After entering verification code, please log in.
+      <br/>
+      Please check your inbox.
+    </p>
+    <p *ngIf="errorMessage">
+      Verification code is not valid. Please check again.
+    </p>
+
+    <form novalidate #formData='ngForm' (ngSubmit)="onSubmit(formData)">
+      <div class="form-input-container left-padding">
+        <ion-icon name="ios-person" class="left-icon"></ion-icon>
+        <ion-input type="text" placeholder="Enter Verification Code" (ngModel)="code" name="code" required></ion-input>
+      </div>
+      <div padding class="confirm-text">
+          Confirm your SMS verification code.
+      </div>
+      <div class="button-container">
+         <!--<div class="cancle-button-container"> <img src="assets/images/btn-cancle.png"></div>x-->
+        <button type="submit" ion-button round outline color="button" [disabled]="!formData.valid" class="date-button" >Verify</button>
+
+      </div>
+
+    </form>
+    <button ion-button round outline color="button" (click)="reSend(user.phone)" class="date-button" >Resend</button>
+    <button ion-button round outline color="button" (click)="change()" class="date-button" >Change</button>
+  </div>
+</ion-content>

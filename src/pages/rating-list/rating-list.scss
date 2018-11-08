@@ -1,0 +1,78 @@
+page-rating-list {
+  .img-container {
+    width: 150px;
+    margin: auto;
+    height: 150px;
+    border-radius: 50%;
+    overflow: hidden;
+  }
+  .message-content-welcome-note {
+    background: #e7eaf9;
+    padding: 20px;
+    text-align: center;
+    border-radius: 5px;
+    color: #757575;
+    margin: 10px;
+	}
+
+  ion-card-content {
+    text-align: center;
+
+    h2 {
+      font-size: 2.4rem !important;
+      margin-top: 10px !important;
+    }
+  }
+
+  .star-contaner {
+    font-size: 20px !important;
+  }
+
+  .star-active {
+    color: #ffbd00;
+  }
+
+  .star-inactive {
+    color: #979797;
+  }
+
+  .user-image-container {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    overflow: hidden;
+  }
+
+  .star-contaner-user {
+    font-size: 16px;
+    vertical-align: -15px;
+    display: inline-block;
+  }
+
+  h3 {
+    font-size: 18px !important;
+  }
+
+  .name {
+    display: inline-block;
+    vertical-align: -15px;
+  }
+
+  .date {
+    color: #fe3061;
+  }
+
+  @media screen and (device-aspect-ratio: 2/3) {
+    .star-contaner{
+      font-size: 15px;  
+    }
+
+  }
+
+  @media screen and (device-aspect-ratio: 40/71) {
+    .star-contaner{
+      font-size: 15px;
+    }
+  }
+
+}

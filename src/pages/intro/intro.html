@@ -1,0 +1,130 @@
+<ion-header class="has_subheader">
+  <img src="assets/images/intro-banner1.png">
+
+  <ion-toolbar> {{title}}</ion-toolbar>
+
+</ion-header>
+
+
+<ion-content>
+    <ion-slides (ionSlideDidChange)="slideChanged()">
+        <ion-slide>
+
+
+          <h1>Welcome</h1>
+          <p>
+            date$ is the next generation sugar app.
+          </p>
+
+          <p>
+           Expect safe, honesty and trustworthy people here.
+          </p>
+
+          <p>
+              How? Let's take a look...
+          </p>
+
+          <div class="button-container">
+            <button ion-button round outline type="submit" color="button" class="date-button" (tap)="goToSlide(1)">
+              Next
+            </button>
+          </div>
+        </ion-slide>
+        <ion-slide>
+
+          <div class="image-container">
+            <img src="assets/images/intro-img-1.png">
+          </div>
+          <div class="text-container">
+            <p>Everyone has a star rating for their safety and honesty.</p>
+            <p>This rating is given by other people who have met them in real life.</p>
+             <p>Don't worry, you are not rated on looks or anything. Just on your safety and honesty.</p>
+          </div>
+
+          <div class="button-container">
+            <button ion-button round outline type="submit" color="button" class="date-button"  (tap)="goToSlide(2)">
+              Next
+            </button>
+          </div>
+        </ion-slide>
+        <ion-slide>
+
+           <div class="image-container">
+            <img src="assets/images/intro-img-2.png">
+          </div>
+          <div class="text-container">
+            <p>
+              Each time you agree to meet someone, BOTH press the "We Met" button.
+            </p>
+            <p>
+              Do this BEFORE you go on a date.
+            </p>
+            <p>
+              This button allows you to rate each other afterword.
+            </p>
+            <p>
+              Don't meet anyone who refuses to press "We Met."
+            </p>
+
+        </div>
+          <div class="button-container">
+            <button ion-button round outline type="submit" color="button" class="date-button"  (tap)="goToSlide(3)">
+              Next
+            </button>
+          </div>
+        </ion-slide>
+
+        <ion-slide>
+
+          <div class="image-container">
+            <img src="assets/images/intro-img-4.png">
+          </div>
+          <div class="text-container">
+            <p>
+                After your date, use the "Give Rating" button to give a rating.
+            </p>
+            <p>
+                Give everyone 5 stars unless there is a problem.
+            </p>
+            <p>
+                DO NOT rate people on their looks, awkwardness , etc... Only on Safety
+                and Honesty.
+            </p>
+            <p>
+                DO NOT provide false ratings if you didn't get along well.  Be
+                objective and honest.
+            </p>
+           </div>
+
+          <div class="button-container">
+            <button ion-button round outline type="submit" color="button" class="date-button"  (tap)="goToSlide(4)">
+              Next
+            </button>
+          </div>
+        </ion-slide>
+        <ion-slide>
+          
+          <h6> The rest of date$ works like any high quality dating app: </h6>
+          <div class="text-container">
+            <p> * Profiles </p>
+
+            <p> * Searching, Profile location or custom location   </p>
+
+            <p> * Favorites, Who viewed me , etc...  </p>
+
+            <h6> Where we outshine other dating apps is :</h6>
+
+            <p> * Send pics in your private messages </p>
+            <p> * Search by star ratings ( Safety rating ) </p>
+            <p> * We don't have con artists, scammers and fake profiles here because those get weeded out very quickly using our rating system.</p>
+            <p> <b>Note</b> Do not make malicious, untruthful ratings on other users. You will get bannned. Keep it honest and objective.</p>
+        </div>
+          <div class="button-container">
+            <button ion-button round outline type="submit" color="button" class="date-button"  (tap)="goToSlide(5)">
+              Done
+            </button>
+          </div>
+
+        </ion-slide>
+      </ion-slides>
+</ion-content>

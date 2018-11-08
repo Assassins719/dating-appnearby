@@ -1,0 +1,47 @@
+<ion-header>
+  <menu-header [pageTitle]="pageTitle"> </menu-header>
+</ion-header>
+
+<ion-content>
+  <div class="message-content" *ngIf="noChat">
+    No chat history available.
+  </div>
+  <ion-list *ngIf="!noChat">
+
+    <ion-item *ngFor="let chatHistory of chatHistoryList">
+      <ion-grid *ngIf="chatHistory.user">
+        <ion-row>
+          <ion-col col-2 (tap)="goToProfile(chatHistory.$key)">
+            <div class="thumb-image-container" >
+              <img [src]="chatHistory.user.profilePicPath" *ngIf="chatHistory.user.profilePicPath" />
+    	  	    <img src="assets/images/1495971155_profle.png" *ngIf="!chatHistory.user.profilePicPath" />
+            </div>
+          </ion-col>
+          <ion-col col-8 (tap)="goToChat(chatHistory.$key)">
+            <div class="name">
+              {{ chatHistory.user.userName }}
+            </div>
+            <div class="hobbies">
+              <ion-icon *ngIf="chatHistory.lastChatType === 'Image'" ios="ios-image" md="md-image"></ion-icon>
+              {{ chatHistory.lastChatText }}
+            </div>
+
+          </ion-col>
+          <ion-col col-2>
+            <div class="status-container">
+              <div class="status">{{ chatHistory.lastChatTime | date:'shortTime' }}</div>
+              <div class="img-container"> <img src="assets/images/icon-arrow-left.png"> </div>
+              <div class="badge-button" *ngIf="chatHistory.unreadChatCount">{{chatHistory.unreadChatCount}}</div>
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+
+  </ion-list>
+
+</ion-content>
+
+<ion-footer>
+  <footer-button [pageTitle]="pageTitle"></footer-button>
+</ion-footer>

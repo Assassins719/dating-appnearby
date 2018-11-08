@@ -1,0 +1,238 @@
+page-search-result {
+  .image-container {
+    width: 40px;
+  }
+
+  .selectBoxContainer {
+    border: 1px solid #c5c7d2;
+    position: relative;
+    height: 40px;
+    padding: 5px;
+  }
+
+  .card-header {
+    padding: 0;
+  }
+
+  .select {
+    padding: 0;
+    position: static;
+
+    .select-icon {
+      position: absolute;
+      width: 12px;
+      height: 19px;
+      right: 10px;
+      top: 10px;
+    }
+
+    .select-text {
+      left: 10px;
+      top: 12px;
+      font-size: 13px;
+      position: absolute;
+    }
+  }
+
+  .select-title {
+    font-size: 14px;
+    font-weight: bold;
+    display: inline-block;
+    margin-top: 6px;
+  }
+
+  ion-select {
+    display: inline-block;
+  }
+
+  .filter-list {
+    width: 100%;
+    overflow: hidden;
+
+    .filter-item {
+      float: left;
+      border: 1px solid #c5c7d2;
+      padding: 3px;
+      margin-right: 5px;
+      border-radius: 3px;
+      color: #ff2f55;
+    }
+
+    .close-icon {
+      font-size: 1.4em;
+      padding: 2px;
+      vertical-align: middle;
+      color: #000;
+    }
+  }
+
+  .listHeader {
+    background: #e5e6ec;
+
+    .result-header {
+      font-weight: bold;
+    }
+
+    .result {
+      color: #a9a8b1;
+      font-size: 12px;
+      font-weight: bold;
+      float: right;
+    }
+  }
+
+  ion-list {
+    padding: 5px;
+
+    ion-item {
+      .star-active {
+        color: #ffbd00;
+      }
+
+      .star-inactive {
+        color: #979797;
+      }
+
+      .thumb-image-containet {
+        width: 45px;
+        height: 45px;
+        border-radius: 50%;
+        overflow: hidden;
+        margin: 3px;
+      }
+
+      .label {
+        margin: 0;
+      }
+
+      .item-block .item-inner {
+        padding: 0 !important;
+      }
+
+      .hobbies {
+        font-size: 12px;
+        margin-bottom: 2px;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+      }
+
+      .star-contaner {
+        font-size: 12px;
+      }
+
+      .name {
+        font-size: 16px;
+        img{
+          width: 15px;
+          display: inline-block;
+          vertical-align: top;
+        }
+      }
+
+      .col {
+        padding: 0;
+      }
+
+      .image-container {
+        width: 12px;
+        font-size: 12px;
+      }
+
+      .locaion-image {
+        font-size: 12px;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+        width: 100%;
+        img {
+          width: 10px;
+          vertical-align: -2px;
+        }
+      }
+    }
+
+    .item {
+      border: 0;
+      margin: 5px 0;
+    }
+
+    .item-inner {
+      padding: 0 !important;
+      border: 0 !important;
+    }
+
+    .status-container {
+      text-align: center;
+
+      .status {
+        font-size: 10px;
+        color: #ff0054;
+        margin-bottom: 10px;
+        &.offline{
+          color: #aaa;
+        }
+      }
+      .fav{
+        color: #aaa;
+        &.active{
+          color: #ff0054;
+        }
+      }
+
+      ion-icon {
+        font-size: 26px;
+      }
+    }
+
+    .not-fav {
+      color: #e7e8ed;
+    }
+  }
+
+  .list-ios > .item-block:first-child {
+    border: 0 !important;
+  }
+
+  .list-ios > .item-block:last-child {
+    border: 0 !important;
+  }
+
+  .delete-search {
+    padding: 0;
+    height: inherit;
+    font-size: 1.5em;
+    color: #9e9e9e;
+  }
+
+  button.custum-button {
+    border: 1px solid #b0b0b2;
+    border-radius: 3px;
+    margin: 0;
+    background: #fff;
+    padding: 10px 7px;
+    color: #808080;
+    margin-bottom: 5px;
+
+    &.refine {
+      padding: 14px 7px 10px;
+    }
+
+    img {
+      width: 13px;
+      display: inline-block;
+      margin-top: -2px;
+      vertical-align: top;
+    }
+  }
+  .border-left{
+    border-left: 2px solid #d7d7d7;
+  }
+  .asc-toggle{
+    ion-icon{
+      font-size: 24px;
+      top: 7px;
+      position: relative;
+    }
+  }
+}

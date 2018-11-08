@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>AD_UNIT_ID_FOR_BANNER_TEST</key>
+	<string>ca-app-pub-3940256099942544/2934735716</string>
+	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
+	<string>ca-app-pub-3940256099942544/4411468910</string>
+	<key>CLIENT_ID</key>
+	<string>859875496266-pmmuui78bpgudj0urne0u79pua9ge64s.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.859875496266-pmmuui78bpgudj0urne0u79pua9ge64s</string>
+	<key>API_KEY</key>
+	<string>AIzaSyAKNXBWNBPtjX3zEQvI3MYnmVxk4VZEHSM</string>
+	<key>GCM_SENDER_ID</key>
+	<string>859875496266</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.ncrts.dateapp</string>
+	<key>PROJECT_ID</key>
+	<string>datesapp-c775e</string>
+	<key>STORAGE_BUCKET</key>
+	<string>datesapp-c775e.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<true/>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false/>
+	<key>IS_APPINVITE_ENABLED</key>
+	<false/>
+	<key>IS_GCM_ENABLED</key>
+	<true/>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true/>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:859875496266:ios:c14f5b764109c29d</string>
+	<key>DATABASE_URL</key>
+	<string>https://datesapp-c775e.firebaseio.com</string>
+</dict>
+</plist>

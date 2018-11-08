@@ -1,0 +1,194 @@
+page-profile {
+	.profile-pic {
+		position: relative;
+	}
+	.description{
+		padding: 10px 10px 15px;
+		.value{
+			margin-top: 10px;
+		}
+	}
+
+	.primary-pic {
+		position: relative;
+		height: 350px;
+    overflow: hidden;
+		&:before {
+			content: '';
+			position: absolute;
+			display: block;
+			background: url("../assets/images/profile-image-overlay.png") bottom;
+			bottom: -1px;
+			height: 320px;
+			width: 100%;
+			background-size: cover;
+		}
+	}
+
+	.profile-detail {
+		position: absolute;
+		bottom: -1px;
+		width: 100%;
+		color: #fff;
+
+		.profile-name {
+			font-size: 2.0em;
+			text-align: center;
+			img{
+				width: 20px;
+    		display: inline-block;
+    		margin-top: -8px;
+    		vertical-align: top;
+			}
+		}
+
+		.card-subtitle {
+			font-size: 1.0em;
+			margin: 0 auto;
+			padding: 20px 0;
+			width: 270px;
+			overflow: hidden;
+			text-align: center;
+
+			> div {
+				display: inline-block;
+				margin-right: 10px;
+				padding: 0 0 0 20px;
+				position: relative;
+			}
+
+			.birthday {
+				&:before {
+					content: "";
+					position: absolute;
+					top: -2px;
+					left: 0;
+					display: block;
+					height: 15px;
+					width: 15px;
+					background: url('../assets/images/dob-icon-white.png');
+					background-size: cover;
+				}
+			}
+
+			.gender {
+				&:before {
+					content: "";
+					position: absolute;
+					top: -2px;
+					left: 0;
+					display: block;
+					height: 20px;
+					width: 15px;
+				}
+			}
+
+			.gender.Male {
+				&:before {
+					background: url('../assets/images/icon-sex-male.png');
+					background-size: cover;
+				}
+			}
+			.gender.Female {
+				&:before {
+					background: url('../assets/images/icon-sex-female.png');
+					background-size: cover;
+				}
+			}
+			.gender.Other {
+				&:before {
+					background: url('../assets/images/icon-sex-other.png');
+					background-size: cover;
+				}
+			}
+
+			.star-strip {
+				width: 100px;
+				padding: 0;
+
+				img {
+					width: 18px;
+					display: block;
+					float: left;
+					margin-right: 2px;
+					margin-top: -2px;
+				}
+			}
+
+			.status {
+				padding: 0;
+				margin: 0;
+				vertical-align: -3px;
+				margin-left: 6px;
+
+				img {
+					width: 18px;
+				}
+			}
+		}
+	}
+
+	.button-stripe {
+		padding: 10px 0;
+
+		.button-panel {
+			width: 310px;
+			margin: 0 auto;
+			text-align: center;
+		}
+
+		button {
+			border: 1px solid #b0b0b2;
+			border-radius: 3px;
+			margin: 0;
+			background: #fff;
+			padding: 10px 7px;
+			color: #808080;
+			margin-bottom: 5px;
+
+			img {
+				display: inline-block;
+				width: 16px;
+				margin-top: -2px;
+				vertical-align: top;
+			}
+
+			&.only-icon {
+				padding: 10px;
+			}
+
+			&.only-icon.block {
+				padding: 10px 10px 8px;
+
+				img {
+					width: 17px;
+				}
+			}
+
+			&.only-icon.wemet {
+				padding: 10px 10px 8px;
+			}
+		}
+
+		.count {
+			color: red;
+		}
+	}
+
+	.label {
+		color: #808080;
+	}
+
+	.value {
+		font-size: 1.115em;
+	}
+
+	.profile-detail .star-contaner{
+		display: inline-block;
+		vertical-align: -3px;
+	}
+
+	.toolbar-ios{
+		padding-top:10px; 
+	}
+}
